@@ -1,0 +1,23 @@
+-- informix3-storage: before-refresh
+INFORMIXDIR=/home/informix/ixinst1
+INFORMIXSERVER=ol_informix1210_2
+ONCONFIG=onconfig.ol_informix1210
+INFORMIXSQLHOSTS=/home/informix/ixinst1/etc/sqlhosts.ol_informix1210
+GL_USEGLU=1
+PATH=${INFORMIXDIR}/bin:${INFORMIXDIR}/extend/krakatoa/jre/bin:${PATH}
+export INFORMIXDIR INFORMIXSERVER ONCONFIG INFORMIXSQLHOSTS GL_USEGLU PATH
+onmode -ky
+exit 0
+
+-- informix3-storage: after-refresh
+INFORMIXDIR=/home/informix/ixinst1
+INFORMIXSERVER=ol_informix1210_2
+ONCONFIG=onconfig.ol_informix1210
+INFORMIXSQLHOSTS=/home/informix/ixinst1/etc/sqlhosts.ol_informix1210
+GL_USEGLU=1
+PATH=${INFORMIXDIR}/bin:${INFORMIXDIR}/extend/krakatoa/jre/bin:${PATH}
+export INFORMIXDIR INFORMIXSERVER ONCONFIG INFORMIXSQLHOSTS GL_USEGLU PATH
+oninit -PHY
+onmode -m
+exit 0
+

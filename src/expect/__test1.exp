@@ -1,0 +1,22 @@
+spawn ssh informix@informix1 
+
+expect {
+    -re {password: } {
+        send "informix\r"
+    }
+    timeout {
+        puts "Timed out waiting for password prompt."
+        exit 1
+    }
+}
+
+#expect "$ " { send "echo aaa > /home/informix/aaa.txt\r" }
+
+#interact
+
+send "ls -l\r"
+
+interact
+
+exit 0
+

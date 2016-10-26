@@ -1,0 +1,9 @@
+#!/usr/bin/expect -f
+ 
+set timeout 600
+ 
+spawn sh ./dx-snap-informix2-storage.sh
+ 
+expect "Password: " { send "delphix\r" }
+interact
+exit 0

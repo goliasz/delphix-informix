@@ -1,0 +1,18 @@
+#!/usr/bin/expect -f
+#Usage test2.exp <host> <ssh user> <ssh password>
+ 
+set timeout 600
+ 
+spawn ssh [lindex $argv 1]@[lindex $argv 0]
+ 
+expect "yes/no" { 
+    send "yes\r"
+    expect "*?assword" { send "[lindex $argv 2]\r" }
+    } "*?assword" { send "[lindex $argv 2]\r" }
+
+expect "$ " { send "ontape -a\r"
+  expect "current logical log? (y/n) " { send "y\r" }
+  expect "Program over." { send "echo dudu\r" }
+}
+#interact
+#exit 0

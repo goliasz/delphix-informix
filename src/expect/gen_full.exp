@@ -1,0 +1,22 @@
+#!/usr/bin/expect -f
+#Usage test2.exp <host> <ssh user> <ssh password>
+ 
+set timeout 600
+ 
+spawn ssh [lindex $argv 1]@[lindex $argv 0]
+ 
+expect "yes/no" { 
+    send "yes\r"
+    expect "*?assword" { send "[lindex $argv 2]\r" }
+    } "*?assword" { send "[lindex $argv 2]\r" }
+
+expect "$ " { send "cd ~/backup\r" }
+expect "$ " { send "rm ~/backup/full.bak\r" }
+expect "$ " { send "touch ~/backup/full.bak\r" }
+expect "$ " { send "chmod 660 ~/backup/full.bak\r" }
+expect "$ " { send "ontape -s -L 0 -F -t ~/backup/full.bak\r" 
+  expect "continue ... " { send "\r" }
+}
+expect "$ " { send "exit\r" }
+#interact
+exit 0

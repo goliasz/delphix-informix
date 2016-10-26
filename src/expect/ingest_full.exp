@@ -1,0 +1,14 @@
+#!/usr/bin/expect -f
+
+set timeout 600
+ 
+spawn ontape -p -t /home/informix/backup/full.bak 
+
+expect "continue ... " { send "\r" 
+  expect "Continue restore? (y/n)" { send "y\r" }
+  expect "Do you want to back up the logs? (y/n)" { send "n\r" }
+  expect "Restore a level 1 archive (y/n)" { send "n\r" }
+}
+ 
+#interact
+exit 0

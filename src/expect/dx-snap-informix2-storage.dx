@@ -1,0 +1,6 @@
+database
+select informix2-storage
+sync
+commit
+exit
+
